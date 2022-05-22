@@ -92,8 +92,8 @@ printf("IN MAIN\n");
         default:
             // Elternprozess
             // Wartet auf Kindprozess
-            printf("waiting....");
             wait(NULL);
+            printf("KIDDY ANGEKOMMEN\n");
     }
 
     // Datei auslesen
@@ -104,7 +104,7 @@ printf("IN MAIN\n");
     fclose(fp);
 
     // Exit Prozess
-    return 0;
+    exit(0);
 }
 
 int kiddyscode(void)
@@ -125,7 +125,7 @@ int kiddyscode(void)
         {
             grandkiddyscode(i);
             printf("after grandkiddies\n");
-            return 0;
+            exit(0);
         }
         else
         {
@@ -136,10 +136,11 @@ int kiddyscode(void)
     for(int i = 1; i <= N_GRANDKIDDIES; i++)
     {
         printf("Nummer %i start!\n", i);
-        wait(NULL);
-        printf("Nummer %i fertig!\n", i);
+        int pid = wait(NULL);
+        printf("Nummer %i mit pid %i fertig!\n", i, pid);
     }
     printf("nach for!!\n");
+
     return 0;
 }
 
@@ -154,10 +155,14 @@ int grandkiddyscode(int nr)
 
     while(stop != 1)
     {
-        if(nr == 1) kill(getppid(), SIGUSR1);
-        if(nr == 2) kill(getppid(), SIGUSR2);
+        if(nr == 1) {
+        kill(getppid(), SIGUSR1);
+        }
+        if(nr == 2) {
+        kill(getppid(), SIGUSR2);
+        }
     }
-
+    printf("after while in grandkiddies\n");
     return 0;
 }
 

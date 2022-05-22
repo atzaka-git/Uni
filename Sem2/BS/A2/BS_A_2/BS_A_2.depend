@@ -7,3 +7,11 @@
 	<sys/wait.h>
 	<signal.h>
 
+1653217439 source:/home/atzaka/Desktop/GitHub/Uni/Sem2/BS/A2/BS_A_2/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<unistd.h>
+	<sys/wait.h>
+	<signal.h>
+
